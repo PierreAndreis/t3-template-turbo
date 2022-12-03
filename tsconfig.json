@@ -16,5 +16,10 @@
     "incremental": true,
     "noUncheckedIndexedAccess": true
   },
-  "include": [".eslintrc.cjs"]
+  "include": [
+    ".eslintrc.cjs",
+    "commitlint.config.js",
+    ".prettierrc.cjs",
+    "packages/config/tailwind/*.js"
+  ]
 }
