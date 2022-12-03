@@ -1,5 +1,6 @@
-import { router, publicProcedure } from "../trpc";
 import { z } from "zod";
+
+import { router, publicProcedure } from "../trpc";
 
 export const postRouter = router({
   all: publicProcedure.query(({ ctx }) => {
@@ -9,7 +10,7 @@ export const postRouter = router({
     return ctx.prisma.post.findFirst({ where: { id: input } });
   }),
   create: publicProcedure
-    .input(z.object({ title: z.string(), content: z.string() }))
+    .input(z.object({ content: z.string(), title: z.string() }))
     .mutation(({ ctx, input }) => {
       return ctx.prisma.post.create({ data: input });
     }),

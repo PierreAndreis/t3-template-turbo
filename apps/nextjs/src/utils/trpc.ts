@@ -1,7 +1,8 @@
 // src/utils/trpc.ts
-import { createTRPCNext } from "@trpc/next";
 import { httpBatchLink, loggerLink } from "@trpc/client";
-import { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
+import { createTRPCNext } from "@trpc/next";
+import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
+
 import type { AppRouter } from "@acme/api";
 import { transformer } from "@acme/api/transformer";
 
@@ -15,7 +16,6 @@ const getBaseUrl = () => {
 export const trpc = createTRPCNext<AppRouter>({
   config() {
     return {
-      transformer,
       links: [
         loggerLink({
           enabled: (opts) =>
@@ -26,6 +26,7 @@ export const trpc = createTRPCNext<AppRouter>({
           url: `${getBaseUrl()}/api/trpc`,
         }),
       ],
+      transformer,
     };
   },
   ssr: false,

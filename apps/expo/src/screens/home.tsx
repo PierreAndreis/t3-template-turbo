@@ -1,15 +1,9 @@
-import React from "react";
-
-import {
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-
-import { SafeAreaView } from "react-native-safe-area-context";
 import { FlashList } from "@shopify/flash-list";
 import type { inferProcedureOutput } from "@trpc/server";
+import React from "react";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import type { AppRouter } from "@acme/api";
 
 import { trpc } from "../utils/trpc";
@@ -52,8 +46,8 @@ const CreatePost: React.FC = () => {
         className="rounded bg-[#cc66ff] p-2"
         onPress={() => {
           mutate({
-            title,
             content,
+            title,
           });
         }}
       >
@@ -88,9 +82,9 @@ export const HomeScreen = () => {
         </View>
 
         <FlashList
+          ItemSeparatorComponent={() => <View className="h-2" />}
           data={postQuery.data}
           estimatedItemSize={20}
-          ItemSeparatorComponent={() => <View className="h-2" />}
           renderItem={(p) => (
             <TouchableOpacity onPress={() => setShowPost(p.item.id)}>
               <PostCard post={p.item} />
